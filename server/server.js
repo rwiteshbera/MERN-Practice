@@ -7,12 +7,8 @@ dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
 
-require("./models/user"); // Database Schema
 
-app.use(express.json());
-app.use(require("./routes/auth")); // Express Router
-
-// Connect to Database
+// Connect to Database - MongoDB
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -25,6 +21,13 @@ mongoose
     console.log("Failed to connect with Database: " + err);
   });
 
+
+require("./models/user"); // Database Schema
+require("./models/post"); // Post Schema
+
+app.use(express.json());
+app.use(require("./routes/auth")); 
+app.use(require("./routes/post")); 
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`);

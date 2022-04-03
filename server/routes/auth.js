@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("userData");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); // Encrypt Password
 const jwt = require('jsonwebtoken');
 const requireLogin = require("../middleware/requireLogin");
 
@@ -17,7 +17,7 @@ router.get("/protected", requireLogin, (req, res) => {
     res.send("HELLO");
 }) 
 
-// Registration 
+// User Registration 
 router.post("/signup", (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {

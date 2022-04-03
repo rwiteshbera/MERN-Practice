@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// User Registration Schema
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
